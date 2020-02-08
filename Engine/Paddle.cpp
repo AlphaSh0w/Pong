@@ -2,8 +2,7 @@
 
 Paddle::Paddle(const Vect<float>& topleft, const Vect<float>& bottomright)
 	:
-	topleft(topleft),
-	bottomright(bottomright)
+	hitbox(topleft,bottomright)
 {
 }
 
