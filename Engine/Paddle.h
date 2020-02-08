@@ -5,8 +5,11 @@
 class Paddle
 {
 public:
-	Paddle(const Vect<float>& topleft, const Vect<float>& topright);
-	Paddle(float x1, float y1, float x2, float y2);
+	Paddle(const Vect<float>& topleft, float length, float width);
+	Paddle(float x1, float y1, float length, float width);
+	Rect<float> gethitbox();
 private:
-	Rect<float> hitbox;
+	Vect<float> topleft;
+	float height;
+	float width;
 };

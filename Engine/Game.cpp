@@ -40,6 +40,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	test.gethitbox();
 }
 
 void Game::ComposeFrame()

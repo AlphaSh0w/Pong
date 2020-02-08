@@ -1,14 +1,20 @@
 #include "Paddle.h"
 
-Paddle::Paddle(const Vect<float>& topleft, const Vect<float>& bottomright)
+Paddle::Paddle(const Vect<float>& topleft, float height, float width)
 	:
-	hitbox(topleft,bottomright)
+	topleft(topleft),
+	height(height),
+	width(width)
 {
 }
 
-Paddle::Paddle(float x1, float y1, float x2, float y2)
+Paddle::Paddle(float x1, float y1, float height, float width)
 	:
-	Paddle(Vect<float>(x1, y1), Vect<float>(x2, y2))
+	Paddle(Vect<float>(x1,y1),height,width)
 {
+}
 
+Rect<float> Paddle::gethitbox()
+{
+	return Rect<float>(topleft, topleft.x + width, topleft.y + height);
 }
