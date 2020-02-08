@@ -45,7 +45,7 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
-	Paddle test;
+	Paddle paddletest;
 	Rect<float> recttest;
 	Ball testball;
 	FrameTime ft;

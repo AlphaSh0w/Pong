@@ -26,7 +26,7 @@ Ball::Ball(float x1, float y1, float dimension, float speed_x, float speed_y)
 {
 }
 
-Rect<float> Ball::GetHitBox()
+Rect<float> Ball::GetHitBox() const
 {
 	return Rect<float>(topleft, topleft.x + dimension, topleft.y + dimension);
 }
