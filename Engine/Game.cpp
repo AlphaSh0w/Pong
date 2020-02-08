@@ -41,6 +41,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	float dt= ft.mark();
 	test.gethitbox();
 }
 
