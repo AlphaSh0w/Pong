@@ -26,7 +26,8 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	test(10.f,10.f,50.f,50.f),
-	recttest(25.f,35.f,60.f,200.f)
+	recttest(25.f,35.f,60.f,200.f),
+	testball(200.f,150.f,50.f)
 {
 }
 
@@ -47,4 +48,5 @@ void Game::ComposeFrame()
 {
 	//gfx.DrawRect(recttest, Colors::Blue);
 	gfx.DrawRect(Vect<float>(25.f, 35.f), Vect<float>(60.f, 50.f),Colors::Blue);
+	gfx.DrawRect(testball.GetHitBox(), Colors::White);
 }

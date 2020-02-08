@@ -14,7 +14,7 @@ Paddle::Paddle(float x1, float y1, float height, float width)
 {
 }
 
-Rect<float> Paddle::gethitbox()
+Rect<float> Paddle::gethitbox() const
 {
 	return Rect<float>(topleft, topleft.x + width, topleft.y + height);
 }

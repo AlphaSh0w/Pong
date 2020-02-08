@@ -26,6 +26,7 @@
 #include "Vect.h"
 #include "Paddle.h"
 #include "Rect.h"
+#include "Ball.h"
 
 class Game
 {
@@ -45,6 +46,7 @@ private:
 	Graphics gfx;
 	Paddle test;
 	Rect<float> recttest;
+	Ball testball;
 	/********************************/
 	/*  User Variables              */
 	/********************************/
