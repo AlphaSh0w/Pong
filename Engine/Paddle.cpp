@@ -1,7 +1,8 @@
 #include "Paddle.h"
 
-Paddle::Paddle(Vect<float>& topleft, Vect<float>& bottomright)
-	:topleft(topleft),
+Paddle::Paddle(const Vect<float>& topleft, const Vect<float>& bottomright)
+	:
+	topleft(topleft),
 	bottomright(bottomright)
 {
 }

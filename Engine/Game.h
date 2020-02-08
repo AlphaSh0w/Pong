@@ -25,6 +25,7 @@
 #include "Graphics.h"
 #include "Vect.h"
 #include "Paddle.h"
+#include "Rect.h"
 
 class Game
 {
@@ -43,6 +44,7 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
 	Paddle test;
+	Rect<float> recttest;
 	/********************************/
 	/*  User Variables              */
 	/********************************/

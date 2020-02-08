@@ -25,7 +25,8 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	test(10.f,10.f,50.f,50.f)
+	test(10.f,10.f,50.f,50.f),
+	recttest(25.f,35.f,60.f,15.f)
 {
 }
 
