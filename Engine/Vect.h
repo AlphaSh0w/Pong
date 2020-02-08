@@ -37,6 +37,10 @@ public:
 	{
 		return *this = *this * rhs;
 	}
+	Vect operator* (T rhs) const
+	{
+		return Vect(x * rhs, y * rhs);
+	}
 	Vect operator/ (const Vect& rhs) const
 	{
 		return Vect(x / rhs.x, y / rhs.y);

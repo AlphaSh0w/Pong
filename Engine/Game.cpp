@@ -27,7 +27,7 @@ Game::Game( MainWindow& wnd )
 	gfx( wnd ),
 	test(10.f,10.f,50.f,50.f),
 	recttest(25.f,35.f,60.f,200.f),
-	testball(200.f,150.f,50.f)
+	testball(200.f,150.f,50.f,15.f,15.f)
 {
 }
 
@@ -43,6 +43,7 @@ void Game::UpdateModel()
 {
 	float dt= ft.mark();
 	test.gethitbox();
+	testball.Move(dt);
 }
 
 void Game::ComposeFrame()
