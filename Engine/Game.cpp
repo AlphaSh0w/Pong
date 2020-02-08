@@ -25,8 +25,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	test1(10.f,10.f),
-	test2(20.f,25.f)
+	test(10.f,10.f,50.f,50.f)
 {
 }
 
@@ -40,8 +39,6 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	test1 -= test2;
-	test1 += test1;
 }
 
 void Game::ComposeFrame()

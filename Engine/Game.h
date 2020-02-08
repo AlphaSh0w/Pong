@@ -24,6 +24,7 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "Vect.h"
+#include "Paddle.h"
 
 class Game
 {
@@ -41,7 +42,7 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
-	Vect<float> test1,test2;
+	Paddle test;
 	/********************************/
 	/*  User Variables              */
 	/********************************/
