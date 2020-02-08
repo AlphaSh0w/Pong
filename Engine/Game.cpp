@@ -25,9 +25,9 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	paddletest(10.f,10.f,50.f,20.f,15.f,15.f),
+	paddletest(10.f,10.f,50.f,20.f,15.f,15.f,Colors::Blue),
 	recttest(25.f,35.f,60.f,200.f),
-	testball(200.f,150.f,50.f,15.f,15.f)
+	testball(200.f,150.f,50.f,15.f,15.f,Colors::White)
 {
 }
 
@@ -50,6 +50,6 @@ void Game::UpdateModel()
 void Game::ComposeFrame()
 {
 	//gfx.DrawRect(recttest, Colors::Blue);
-	gfx.DrawRect(paddletest.GetHitBox(), Colors::Blue);
-	gfx.DrawRect(testball.GetHitBox(), Colors::White);
+	paddletest.Draw(gfx);
+	testball.Draw(gfx);
 }

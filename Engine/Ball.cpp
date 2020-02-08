@@ -1,28 +1,29 @@
 #include "Ball.h"
 
-Ball::Ball(const Vect<float>& topleft, float dimension, const Vect<float>& speed)
+Ball::Ball(const Vect<float>& topleft, float dimension, const Vect<float>& speed, Color c)
 	:
 	topleft(topleft),
 	dimension(dimension),
-	speed(speed)
+	speed(speed),
+	c(c)
 {
 }
 
-Ball::Ball(const Vect<float>& topleft, float dimension, float speed_x, float speed_y)
+Ball::Ball(const Vect<float>& topleft, float dimension, float speed_x, float speed_y, Color c)
 	:
-	Ball(topleft, dimension, Vect<float>(speed_x, speed_y))
+	Ball(topleft, dimension, Vect<float>(speed_x, speed_y),c)
 {
 }
 
-Ball::Ball(float x1, float y1, float dimension, const Vect<float>& speed)
+Ball::Ball(float x1, float y1, float dimension, const Vect<float>& speed, Color c)
 	:
-	Ball(Vect<float>(x1,y1),dimension,speed)
+	Ball(Vect<float>(x1,y1),dimension,speed,c)
 {
 }
 
-Ball::Ball(float x1, float y1, float dimension, float speed_x, float speed_y)
+Ball::Ball(float x1, float y1, float dimension, float speed_x, float speed_y, Color c)
 	:
-	Ball(x1,y1,dimension,Vect<float>(speed_x,speed_y))
+	Ball(x1,y1,dimension,Vect<float>(speed_x,speed_y),c)
 {
 }
 
@@ -35,3 +36,9 @@ void Ball::Move(float delta_time)
 {
 	topleft += speed * delta_time;
 }
+
+void Ball::Draw(Graphics & gfx)
+{
+	gfx.DrawRect(GetHitBox(), c);
+}
+
