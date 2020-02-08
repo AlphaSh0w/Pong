@@ -23,6 +23,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Vect.h"
 
 class Game
 {
@@ -40,6 +41,7 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	Vect<float> test1,test2;
 	/********************************/
 	/*  User Variables              */
 	/********************************/
