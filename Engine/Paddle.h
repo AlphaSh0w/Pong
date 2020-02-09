@@ -13,6 +13,7 @@ public:
 	//functions
 	Rect<float> GetHitBox() const;
 	void Move(const Vect<float>& direction,float delta_time);
+	bool SnapToLimitBorder(const Rect<float> border);
 	void Draw(Graphics& gfx);
 private:
 	Vect<float> topleft;
