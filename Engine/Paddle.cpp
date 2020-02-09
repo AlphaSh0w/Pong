@@ -29,31 +29,33 @@ void Paddle::Move(const Vect<float>& direction,float delta_time)
 
 bool Paddle::SnapToLimitBorder(const Rect<float> border)
 {
+	Rect<float> currenthitbox = GetHitBox();
+
 	bool hitborder_y = false;
-	if (topleft.y < border.topleft.y)
+	if (currenthitbox.topleft.y < border.topleft.y)
 	{
-		topleft.y += border.topleft.y - topleft.y;
+		topleft.y += border.topleft.y - currenthitbox.topleft.y;
 		hitborder_y = true;
 	}
 	
-	if (topleft.y + height> border.bottomright.y)
+	if (currenthitbox.bottomright.y > border.bottomright.y)
 	{
 		assert(hitborder_y == false); //If assertion fails: the height of the paddle is too big to fit into the given border.
-		topleft.y -= (topleft.y + height) - border.bottomright.y;
+		topleft.y -= currenthitbox.bottomright.y - border.bottomright.y;
 		hitborder_y = true;
 	}
 
 	bool hitborder_x = false;
-	if (topleft.x < border.topleft.x)
+	if (currenthitbox.topleft.x < border.topleft.x)
 	{
-		topleft.x += border.topleft.x - topleft.x;
+		topleft.x += border.topleft.x - currenthitbox.topleft.x;
 		hitborder_x = true;
 	}
 	
-	if (topleft.x + width > border.bottomright.x)
+	if (currenthitbox.bottomright.x > border.bottomright.x)
 	{
 		assert(hitborder_x == false); //If assertion fails : The width of the paddle is too big to fit into the given border.
-		topleft.x -= (topleft.x + width) - border.bottomright.x;
+		topleft.x -= currenthitbox.bottomright.x - border.bottomright.x;
 		hitborder_x = true;
 	}
 	return (hitborder_x || hitborder_y);
