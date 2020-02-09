@@ -28,6 +28,7 @@
 #include "Rect.h"
 #include "Ball.h"
 #include "FrameTime.h"
+#include "PlayerControl.h"
 
 class Game
 {
@@ -49,6 +50,7 @@ private:
 	Rect<float> recttest;
 	Ball testball;
 	FrameTime ft;
+	PlayerControl player1;
 	/********************************/
 	/*  User Variables              */
 	/********************************/

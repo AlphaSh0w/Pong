@@ -21,9 +21,9 @@ Rect<float> Paddle::GetHitBox() const
 	return Rect<float>(topleft, topleft.x + width, topleft.y + height);
 }
 
-void Paddle::Move(float delta_time)
+void Paddle::Move(const Vect<float>& direction,float delta_time)
 {
-	topleft += speed * delta_time;
+	topleft += speed * direction * delta_time;
 }
 
 void Paddle::Draw(Graphics & gfx)

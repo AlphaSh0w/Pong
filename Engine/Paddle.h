@@ -12,7 +12,7 @@ public:
 
 	//functions
 	Rect<float> GetHitBox() const;
-	void Move(float delta_time);
+	void Move(const Vect<float>& direction,float delta_time);
 	void Draw(Graphics& gfx);
 private:
 	Vect<float> topleft;
