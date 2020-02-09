@@ -16,6 +16,9 @@ public:
 	Rect<float> GetHitBox() const;
 	void Move(float delta_time);
 	void Draw(Graphics& gfx);
+	void InvertXMovement();
+	void InvertYMovement();
+	bool SnapToLimitBorder(const Rect<float>& border); //This automatically reverses the ball's speed on the concerned axis.
 private:
 	Vect<float> topleft;
 	Vect<float> speed;

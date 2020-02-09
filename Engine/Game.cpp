@@ -27,7 +27,7 @@ Game::Game( MainWindow& wnd )
 	gfx( wnd ),
 	paddletest(10.f,10.f,50.f,20.f,200.f,200.f,Colors::Blue),
 	recttest(25.f,35.f,60.f,200.f),
-	testball(200.f,150.f,50.f,15.f,15.f,Colors::White),
+	testball(200.f,150.f,50.f,150.f,150.f,Colors::White),
 	player1('Z','S')
 {
 }
@@ -45,6 +45,7 @@ void Game::UpdateModel()
 	float dt= ft.mark();
 	paddletest.GetHitBox();
 	testball.Move(dt);
+	testball.SnapToLimitBorder(Rect<float>(150.f, 150.f, 500.f, 500.f));
 	paddletest.Move(player1.GetNextMoveDirection(wnd.kbd),dt);
 	paddletest.SnapToLimitBorder(Rect<float>(150.f, 150.f, 500.f, 500.f));
 }
