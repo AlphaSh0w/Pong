@@ -76,7 +76,7 @@ bool Ball::IsColliding(const Rect<float>& paddlehitbox) const
 		&& ballhitbox.bottomright.x >= paddlehitbox.topleft.x && ballhitbox.bottomright.y >= paddlehitbox.topleft.y);
 }
 
-bool Ball::SnapToLimitBorder(const Rect<float>& border)
+bool Ball::SnapToLimitBorderTOPBOTTOM(const Rect<float>& border)
 {
 	Rect<float> currenthitbox = GetHitBox();
 
@@ -96,6 +96,14 @@ bool Ball::SnapToLimitBorder(const Rect<float>& border)
 		hitborder_y = true;
 	}
 
+	
+	return (hitborder_y);
+}
+
+bool Ball::SnapToLimitBorderLEFTRIGHT(const Rect<float>& border)
+{
+	Rect<float> currenthitbox = GetHitBox();
+	
 	bool hitborder_x = false;
 	if (currenthitbox.topleft.x < border.topleft.x)
 	{
@@ -111,6 +119,6 @@ bool Ball::SnapToLimitBorder(const Rect<float>& border)
 		InvertXMovement();
 		hitborder_x = true;
 	}
-	return (hitborder_x || hitborder_y);
+	return hitborder_x;
 }
 

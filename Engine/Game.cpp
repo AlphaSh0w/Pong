@@ -55,22 +55,56 @@ void Game::Go()
 
 void Game::UpdateModel(float dt)
 {
-	leftpaddle.Move(playerleft.GetNextMoveDirection(wnd.kbd), dt);
-	leftpaddle.SnapToLimitBorder(screenrect);
-	rightpaddle.Move(playerright.GetNextMoveDirection(wnd.kbd), dt);
-	rightpaddle.SnapToLimitBorder(screenrect);
-	ball.Move(dt);
-	ball.SnapToLimitBorder(screenrect);
-	//check collisions with paddles.
-	if (ball.IsColliding(leftpaddle.GetHitBox()))
+	if (game_started)
 	{
-		ball.SetMovementToRight();
+		if (!game_ended)
+		{
+			leftpaddle.Move(playerleft.GetNextMoveDirection(wnd.kbd), dt);
+			leftpaddle.SnapToLimitBorder(screenrect);
+			rightpaddle.Move(playerright.GetNextMoveDirection(wnd.kbd), dt);
+			rightpaddle.SnapToLimitBorder(screenrect);
+			ball.Move(dt);
+			ball.SnapToLimitBorderTOPBOTTOM(screenrect);
+			if (ball.SnapToLimitBorderLEFTRIGHT(screenrect))
+			{
+				game_ended = true;
+			}
+			//check collisions with paddles.
+			if (ball.IsColliding(leftpaddle.GetHitBox()))
+			{
+				ball.SetMovementToRight();
+			}
+			else
+			{
+				if (ball.IsColliding(rightpaddle.GetHitBox()))
+				{
+					ball.SetMovementToLeft();
+				}
+			}
+		}
+		else
+		{
+			if (wnd.kbd.KeyIsPressed(VK_RETURN)) //Waiting for enter key press to reset the game.
+			{
+				key_inhibitor = true;
+			}
+			else
+			{
+				if (key_inhibitor == true)
+				{
+					game_started = false;
+					game_ended = false;
+					key_inhibitor = false;
+					//reset game here.
+				}
+			}
+		}
 	}
 	else
 	{
-		if (ball.IsColliding(rightpaddle.GetHitBox()))
+		if (wnd.kbd.KeyIsPressed(VK_RETURN))
 		{
-			ball.SetMovementToLeft();
+			game_started = true;
 		}
 	}
 }

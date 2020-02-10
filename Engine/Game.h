@@ -55,6 +55,9 @@ private:
 	const float starting_ballspeed_X = 300.f;
 	const float starting_ballspeed_Y =  300.f;
 	const float ball_dimension = 20.f;
+	bool game_started = false;
+	bool game_ended = false;
+	bool key_inhibitor = false;
 
 	Rect<float> screenrect; //this is the playable area, I chose the whole screen for now.
 

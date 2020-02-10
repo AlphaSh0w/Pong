@@ -22,7 +22,8 @@ public:
 	void SetMovementToRight();
 	void SetMovementToLeft();
 	bool IsColliding(const Rect<float>& paddlehitbox) const;
-	bool SnapToLimitBorder(const Rect<float>& border); //This automatically reverses the ball's speed on the concerned axis.
+	bool SnapToLimitBorderTOPBOTTOM(const Rect<float>& border); //This automatically reverses the ball's speed on the concerned axis.
+	bool SnapToLimitBorderLEFTRIGHT(const Rect<float>& border); //This automatically reverses the ball's speed on the concerned axis.
 private:
 	Vect<float> topleft;
 	Vect<float> speed;
