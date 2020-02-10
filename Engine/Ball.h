@@ -4,7 +4,6 @@
 #include "Graphics.h"
 #include "Paddle.h"
 
-
 class Ball
 {
 public:
@@ -27,12 +26,9 @@ public:
 	bool IsColliding(const Rect<float>& paddlehitbox) const;
 	bool SnapToLimitBorderTOPBOTTOM(const Rect<float>& border); //This automatically reverses the ball's speed on the concerned axis.
 	bool SnapToLimitBorderLEFTRIGHT(const Rect<float>& border); //This automatically reverses the ball's speed on the concerned axis.
-	void GenerateRandomSpeed();
 private:
 	Vect<float> topleft;
 	Vect<float> speed;
 	Color c;
-	const float dimension;
-	static constexpr float max_speed = 500.f;
-	static constexpr float min_speed = 250.f;
+	float dimension;
 };
