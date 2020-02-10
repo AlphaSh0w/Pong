@@ -54,7 +54,9 @@ private:
 	Rect<float> screenrect;
 
 	Paddle paddleleft;
+	Paddle paddleright;
 	PlayerControl playerleft;
+	PlayerControl playerright;
 
 
 

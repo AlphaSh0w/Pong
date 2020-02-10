@@ -26,8 +26,14 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	screenrect(0.f, 0.f, Graphics::ScreenWidth - 1, Graphics::ScreenHeight - 1),
-	paddleleft(Vect<float>(50.f, 200.f), paddleheight, paddlewidth, Vect<float>(0.f, paddlespeed), Colors::Blue),
-	playerleft('Z','S')
+	paddleleft(Vect<float>(screenrect.topleft.x + (paddlewidth * 2) , (screenrect.bottomright.y /2) - (paddleheight / 2)),
+		paddleheight, paddlewidth, Vect<float>(0.f, paddlespeed), Colors::Blue),
+	paddleright(Vect<float>(screenrect.bottomright.x - (paddlewidth * 3),(screenrect.bottomright.y / 2) - paddleheight/2),
+		paddleheight,paddlewidth, Vect<float>(0.f, paddlespeed), Colors::Blue)
+	//paddles are initialised in a way that puts them at the middle of the playable rectangle height, further from the borders by two times their width.
+	,
+	playerleft('Z','S'),
+	playerright('O','L')
 {
 }
 
@@ -45,11 +51,15 @@ void Game::UpdateModel()
 	
 	paddleleft.Move(playerleft.GetNextMoveDirection(wnd.kbd), dt);
 	paddleleft.SnapToLimitBorder(screenrect);
+	paddleright.Move(playerright.GetNextMoveDirection(wnd.kbd), dt);
+	paddleright.SnapToLimitBorder(screenrect);
 
 }
 
 void Game::ComposeFrame()
 {
 	paddleleft.Draw(gfx);
+	paddleright.Draw(gfx);
+
 
 }
