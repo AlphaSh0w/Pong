@@ -53,6 +53,22 @@ void Ball::InvertYMovement()
 	speed.y = -speed.y;
 }
 
+void Ball::SetMovementToRight()
+{
+	if (speed.x < 0.f)
+	{
+		speed.x = -speed.x;
+	}
+}
+
+void Ball::SetMovementToLeft()
+{
+	if (speed.x > 0.f)
+	{
+		speed.x = -speed.x;
+	}
+}
+
 bool Ball::IsColliding(const Rect<float>& paddlehitbox) const
 {
 	Rect<float> ballhitbox = GetHitBox();

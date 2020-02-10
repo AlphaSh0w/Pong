@@ -50,7 +50,7 @@ void Game::UpdateModel()
 	paddletest.SnapToLimitBorder(Rect<float>(150.f, 150.f, 500.f, 500.f));
 	if (testball.IsColliding(paddletest.GetHitBox()))
 	{
-		float test = 2;
+		testball.SetMovementToRight();
 	}
 }
 

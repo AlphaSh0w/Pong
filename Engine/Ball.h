@@ -19,6 +19,8 @@ public:
 	void Draw(Graphics& gfx);
 	void InvertXMovement();
 	void InvertYMovement();
+	void SetMovementToRight();
+	void SetMovementToLeft();
 	bool IsColliding(const Rect<float>& paddlehitbox) const;
 	bool SnapToLimitBorder(const Rect<float>& border); //This automatically reverses the ball's speed on the concerned axis.
 private:
