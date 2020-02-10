@@ -1,5 +1,6 @@
 #include "Ball.h"
 #include <assert.h>
+#include <random>
 
 Ball::Ball(const Vect<float>& topleft, float dimension, const Vect<float>& speed, Color c)
 	:
@@ -132,5 +133,28 @@ bool Ball::SnapToLimitBorderLEFTRIGHT(const Rect<float>& border)
 		hitborder_x = true;
 	}
 	return hitborder_x;
+}
+
+void Ball::GenerateRandomSpeed()
+{
+
+	std::random_device rd;
+	std::mt19937 rng(rd());
+	std::uniform_int_distribution<int> speed_dist(min_speed, max_speed);
+	std::uniform_int_distribution<int> bool_dist(0, 1);
+
+	//generate the speeds
+	speed.x = (float)speed_dist(rng);
+	speed.y = (float)speed_dist(rng);
+	//randomly choose the speed direction.
+	if (bool_dist(rng))
+	{
+		speed.x = -speed.x;
+	}
+	if (bool_dist(rng))
+	{
+		speed.y = -speed.y;
+	}
+
 }
 

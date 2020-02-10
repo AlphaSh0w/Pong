@@ -21,6 +21,7 @@
 #include "MainWindow.h"
 #include "Game.h"
 
+
 Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
@@ -37,6 +38,7 @@ Game::Game(MainWindow& wnd)
 	ball((screenrect.bottomright.x / 2) - (ball_dimension/2), (screenrect.bottomright.y / 2) - (ball_dimension / 2),
 		ball_dimension,starting_ballspeed_X,starting_ballspeed_Y,Colors::White)
 {
+	ball.GenerateRandomSpeed();
 }
 
 void Game::Go()
@@ -95,13 +97,15 @@ void Game::UpdateModel(float dt)
 					game_started = false;
 					game_ended = false;
 					key_inhibitor = false;
-					//reset game here.
+					//reset positions.
 					ball.SetPosition((screenrect.bottomright.x / 2) - (ball_dimension / 2),
 						(screenrect.bottomright.y / 2) - (ball_dimension / 2));
 					leftpaddle.SetPosition(Vect<float>(screenrect.topleft.x + (paddlewidth * 2),
 						(screenrect.bottomright.y / 2) - (paddle_height / 2)));
 					rightpaddle.SetPosition(Vect<float>(screenrect.bottomright.x - (paddlewidth * 3),
 						(screenrect.bottomright.y / 2) - paddle_height / 2));
+					//reset speeds.
+					ball.GenerateRandomSpeed();
 				}
 			}
 		}
@@ -120,6 +124,4 @@ void Game::ComposeFrame()
 	leftpaddle.Draw(gfx);
 	rightpaddle.Draw(gfx);
 	ball.Draw(gfx);
-
-
 }
