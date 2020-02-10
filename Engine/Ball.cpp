@@ -38,7 +38,7 @@ void Ball::Move(float delta_time)
 	topleft += speed * delta_time;
 }
 
-void Ball::Draw(Graphics & gfx)
+void Ball::Draw(Graphics & gfx) const
 {
 	gfx.DrawRect(GetHitBox(), c);
 }

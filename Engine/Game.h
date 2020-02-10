@@ -39,7 +39,7 @@ public:
 	void Go();
 private:
 	void ComposeFrame();
-	void UpdateModel();
+	void UpdateModel(float dt);
 	/********************************/
 	/*  User Functions              */
 	/********************************/
@@ -47,6 +47,7 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
 	FrameTime ft;
+	const float upper_bound_timestep = 0.0025f;
 
 	const float paddlespeed = 200.f;
 	const float paddleheight = 200.f;

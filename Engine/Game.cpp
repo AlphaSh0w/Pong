@@ -33,7 +33,7 @@ Game::Game(MainWindow& wnd)
 	//paddles are initialised in a way that puts them at the middle of the playable rectangle height, further from the borders by two times their width.
 	,
 	playerleft('Z','S'),
-	playerright('O','L'),
+	playerright(VK_UP,VK_DOWN),
 	ball((screenrect.bottomright.x / 2) - (ball_dimension/2), (screenrect.bottomright.y / 2) - (ball_dimension / 2),
 		ball_dimension,starting_ballspeed_X,starting_ballspeed_Y,Colors::White)
 {
@@ -41,16 +41,20 @@ Game::Game(MainWindow& wnd)
 
 void Game::Go()
 {
-	gfx.BeginFrame();	
-	UpdateModel();
+	gfx.BeginFrame();
+	float elapsedtime = ft.mark();
+	while (elapsedtime > 0.0f)
+	{
+		const float dt = std::min(upper_bound_timestep, elapsedtime);
+		UpdateModel(dt);
+		elapsedtime -= dt;
+	}
 	ComposeFrame();
 	gfx.EndFrame();
 }
 
-void Game::UpdateModel()
+void Game::UpdateModel(float dt)
 {
-	float dt= ft.mark();
-	
 	leftpaddle.Move(playerleft.GetNextMoveDirection(wnd.kbd), dt);
 	leftpaddle.SnapToLimitBorder(screenrect);
 	rightpaddle.Move(playerright.GetNextMoveDirection(wnd.kbd), dt);

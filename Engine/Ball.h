@@ -16,7 +16,7 @@ public:
 	//functions
 	Rect<float> GetHitBox() const;
 	void Move(float delta_time);
-	void Draw(Graphics& gfx);
+	void Draw(Graphics& gfx) const;
 	void InvertXMovement();
 	void InvertYMovement();
 	void SetMovementToRight();

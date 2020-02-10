@@ -61,7 +61,7 @@ bool Paddle::SnapToLimitBorder(const Rect<float> border)
 	return (hitborder_x || hitborder_y);
 }
 
-void Paddle::Draw(Graphics & gfx)
+void Paddle::Draw(Graphics & gfx) const
 {
 	gfx.DrawRect(GetHitBox(), c);
 }
