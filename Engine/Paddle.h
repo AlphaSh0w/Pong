@@ -15,6 +15,7 @@ public:
 	void Move(const Vect<float>& direction,float delta_time);
 	bool SnapToLimitBorder(const Rect<float> border);
 	void Draw(Graphics& gfx) const;
+	void SetPosition(Vect<float>& in_topleft);
 private:
 	Vect<float> topleft;
 	Vect<float> speed;

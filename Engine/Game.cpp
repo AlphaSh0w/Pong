@@ -26,10 +26,10 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	screenrect(0.f, 0.f, Graphics::ScreenWidth - 1, Graphics::ScreenHeight - 1),
-	leftpaddle(Vect<float>(screenrect.topleft.x + (paddlewidth * 2) , (screenrect.bottomright.y /2) - (paddleheight / 2)),
-		paddleheight, paddlewidth, Vect<float>(0.f, paddlespeed), Colors::Blue),
-	rightpaddle(Vect<float>(screenrect.bottomright.x - (paddlewidth * 3),(screenrect.bottomright.y / 2) - paddleheight/2),
-		paddleheight,paddlewidth, Vect<float>(0.f, paddlespeed), Colors::Blue)
+	leftpaddle(Vect<float>(screenrect.topleft.x + (paddlewidth * 2) , (screenrect.bottomright.y /2) - (paddle_height / 2)),
+		paddle_height, paddlewidth, Vect<float>(0.f, paddle_speed), Colors::Blue),
+	rightpaddle(Vect<float>(screenrect.bottomright.x - (paddlewidth * 3),(screenrect.bottomright.y / 2) - paddle_height/2),
+		paddle_height,paddlewidth, Vect<float>(0.f, paddle_speed), Colors::Blue)
 	//paddles are initialised in a way that puts them at the middle of the playable rectangle height, further from the borders by two times their width.
 	,
 	playerleft('Z','S'),
@@ -96,6 +96,12 @@ void Game::UpdateModel(float dt)
 					game_ended = false;
 					key_inhibitor = false;
 					//reset game here.
+					ball.SetPosition((screenrect.bottomright.x / 2) - (ball_dimension / 2),
+						(screenrect.bottomright.y / 2) - (ball_dimension / 2));
+					leftpaddle.SetPosition(Vect<float>(screenrect.topleft.x + (paddlewidth * 2),
+						(screenrect.bottomright.y / 2) - (paddle_height / 2)));
+					rightpaddle.SetPosition(Vect<float>(screenrect.bottomright.x - (paddlewidth * 3),
+						(screenrect.bottomright.y / 2) - paddle_height / 2));
 				}
 			}
 		}

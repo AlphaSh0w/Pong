@@ -65,3 +65,8 @@ void Paddle::Draw(Graphics & gfx) const
 {
 	gfx.DrawRect(GetHitBox(), c);
 }
+
+void Paddle::SetPosition(Vect<float>& in_topleft)
+{
+	topleft = in_topleft;
+}

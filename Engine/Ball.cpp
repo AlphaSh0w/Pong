@@ -69,6 +69,18 @@ void Ball::SetMovementToLeft()
 	}
 }
 
+void Ball::SetPosition(float in_x, float in_y)
+{
+	topleft.x = in_x;
+	topleft.y = in_y;
+}
+
+void Ball::SetSpeed(float in_x, float in_y)
+{
+	speed.x = in_x;
+	speed.y = in_y;
+}
+
 bool Ball::IsColliding(const Rect<float>& paddlehitbox) const
 {
 	Rect<float> ballhitbox = GetHitBox();
