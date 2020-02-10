@@ -2,6 +2,7 @@
 #include "Vect.h"
 #include "Rect.h"
 #include "Graphics.h"
+#include "Paddle.h"
 
 class Ball
 {
@@ -18,6 +19,7 @@ public:
 	void Draw(Graphics& gfx);
 	void InvertXMovement();
 	void InvertYMovement();
+	bool IsColliding(const Rect<float>& paddlehitbox) const;
 	bool SnapToLimitBorder(const Rect<float>& border); //This automatically reverses the ball's speed on the concerned axis.
 private:
 	Vect<float> topleft;

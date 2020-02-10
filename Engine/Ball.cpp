@@ -53,6 +53,13 @@ void Ball::InvertYMovement()
 	speed.y = -speed.y;
 }
 
+bool Ball::IsColliding(const Rect<float>& paddlehitbox) const
+{
+	Rect<float> ballhitbox = GetHitBox();
+	return (ballhitbox.topleft.x <= paddlehitbox.bottomright.x && ballhitbox.topleft.y <= paddlehitbox.bottomright.y
+		&& ballhitbox.bottomright.x >= paddlehitbox.topleft.x && ballhitbox.bottomright.y >= paddlehitbox.topleft.y);
+}
+
 bool Ball::SnapToLimitBorder(const Rect<float>& border)
 {
 	Rect<float> currenthitbox = GetHitBox();

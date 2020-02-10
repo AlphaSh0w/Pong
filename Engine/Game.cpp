@@ -48,6 +48,10 @@ void Game::UpdateModel()
 	testball.SnapToLimitBorder(Rect<float>(150.f, 150.f, 500.f, 500.f));
 	paddletest.Move(player1.GetNextMoveDirection(wnd.kbd),dt);
 	paddletest.SnapToLimitBorder(Rect<float>(150.f, 150.f, 500.f, 500.f));
+	if (testball.IsColliding(paddletest.GetHitBox()))
+	{
+		float test = 2;
+	}
 }
 
 void Game::ComposeFrame()
