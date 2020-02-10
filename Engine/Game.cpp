@@ -26,9 +26,9 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	screenrect(0.f, 0.f, Graphics::ScreenWidth - 1, Graphics::ScreenHeight - 1),
-	paddleleft(Vect<float>(screenrect.topleft.x + (paddlewidth * 2) , (screenrect.bottomright.y /2) - (paddleheight / 2)),
+	leftpaddle(Vect<float>(screenrect.topleft.x + (paddlewidth * 2) , (screenrect.bottomright.y /2) - (paddleheight / 2)),
 		paddleheight, paddlewidth, Vect<float>(0.f, paddlespeed), Colors::Blue),
-	paddleright(Vect<float>(screenrect.bottomright.x - (paddlewidth * 3),(screenrect.bottomright.y / 2) - paddleheight/2),
+	rightpaddle(Vect<float>(screenrect.bottomright.x - (paddlewidth * 3),(screenrect.bottomright.y / 2) - paddleheight/2),
 		paddleheight,paddlewidth, Vect<float>(0.f, paddlespeed), Colors::Blue)
 	//paddles are initialised in a way that puts them at the middle of the playable rectangle height, further from the borders by two times their width.
 	,
@@ -51,19 +51,30 @@ void Game::UpdateModel()
 {
 	float dt= ft.mark();
 	
-	paddleleft.Move(playerleft.GetNextMoveDirection(wnd.kbd), dt);
-	paddleleft.SnapToLimitBorder(screenrect);
-	paddleright.Move(playerright.GetNextMoveDirection(wnd.kbd), dt);
-	paddleright.SnapToLimitBorder(screenrect);
+	leftpaddle.Move(playerleft.GetNextMoveDirection(wnd.kbd), dt);
+	leftpaddle.SnapToLimitBorder(screenrect);
+	rightpaddle.Move(playerright.GetNextMoveDirection(wnd.kbd), dt);
+	rightpaddle.SnapToLimitBorder(screenrect);
 	ball.Move(dt);
 	ball.SnapToLimitBorder(screenrect);
-
+	//check collisions with paddles.
+	if (ball.IsColliding(leftpaddle.GetHitBox()))
+	{
+		ball.SetMovementToRight();
+	}
+	else
+	{
+		if (ball.IsColliding(rightpaddle.GetHitBox()))
+		{
+			ball.SetMovementToLeft();
+		}
+	}
 }
 
 void Game::ComposeFrame()
 {
-	paddleleft.Draw(gfx);
-	paddleright.Draw(gfx);
+	leftpaddle.Draw(gfx);
+	rightpaddle.Draw(gfx);
 	ball.Draw(gfx);
 
 
