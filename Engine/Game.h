@@ -51,12 +51,17 @@ private:
 	const float paddlespeed = 200.f;
 	const float paddleheight = 200.f;
 	const float paddlewidth = 25.f;
-	Rect<float> screenrect;
+	const float starting_ballspeed_X = 200.f;
+	const float starting_ballspeed_Y =  200.f;
+	const float ball_dimension = 20.f;
+
+	Rect<float> screenrect; //this is the playable area, I chose the whole screen for now.
 
 	Paddle paddleleft;
 	Paddle paddleright;
 	PlayerControl playerleft;
 	PlayerControl playerright;
+	Ball ball;
 
 
 

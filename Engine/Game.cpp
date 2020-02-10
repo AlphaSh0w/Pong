@@ -33,7 +33,9 @@ Game::Game(MainWindow& wnd)
 	//paddles are initialised in a way that puts them at the middle of the playable rectangle height, further from the borders by two times their width.
 	,
 	playerleft('Z','S'),
-	playerright('O','L')
+	playerright('O','L'),
+	ball((screenrect.bottomright.x / 2) - (ball_dimension/2), (screenrect.bottomright.y / 2) - (ball_dimension / 2),
+		ball_dimension,starting_ballspeed_X,starting_ballspeed_Y,Colors::White)
 {
 }
 
@@ -53,6 +55,8 @@ void Game::UpdateModel()
 	paddleleft.SnapToLimitBorder(screenrect);
 	paddleright.Move(playerright.GetNextMoveDirection(wnd.kbd), dt);
 	paddleright.SnapToLimitBorder(screenrect);
+	ball.Move(dt);
+	ball.SnapToLimitBorder(screenrect);
 
 }
 
@@ -60,6 +64,7 @@ void Game::ComposeFrame()
 {
 	paddleleft.Draw(gfx);
 	paddleright.Draw(gfx);
+	ball.Draw(gfx);
 
 
 }
