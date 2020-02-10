@@ -46,11 +46,19 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
-	Paddle paddletest;
-	Rect<float> recttest;
-	Ball testball;
 	FrameTime ft;
-	PlayerControl player1;
+
+	const float paddlespeed = 200.f;
+	const float paddleheight = 200.f;
+	const float paddlewidth = 25.f;
+	Rect<float> screenrect;
+
+	Paddle paddleleft;
+	PlayerControl playerleft;
+
+
+
+
 	/********************************/
 	/*  User Variables              */
 	/********************************/
