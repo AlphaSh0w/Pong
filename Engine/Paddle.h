@@ -16,6 +16,8 @@ public:
 	bool SnapToLimitBorder(const Rect<float> border);
 	void Draw(Graphics& gfx) const;
 	void SetPosition(Vect<float>& in_topleft);
+	float GetWidth() const;
+	float GetHeight() const;
 private:
 	Vect<float> topleft;
 	Vect<float> speed;

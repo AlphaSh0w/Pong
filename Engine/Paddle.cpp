@@ -70,3 +70,13 @@ void Paddle::SetPosition(Vect<float>& in_topleft)
 {
 	topleft = in_topleft;
 }
+
+float Paddle::GetWidth() const
+{
+	return width;
+}
+
+float Paddle::GetHeight() const
+{
+	return height;
+}
