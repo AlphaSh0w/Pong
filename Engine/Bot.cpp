@@ -46,7 +46,7 @@ void Bot::Update_Seek(Ball ball, Rect<float>& play_area)
 	std::uniform_int_distribution<int> halfwidthdist(0, int(controlled_paddle.GetHeight()/2));
 	std::uniform_int_distribution<int> bool_dist(0, 1);
 
-	int random_shift = halfwidthdist(rng);
+	int random_shift = halfwidthdist(rng) - seek_tolerance - 10;
 	if (bool_dist(rng))
 	{
 		random_shift = -random_shift;

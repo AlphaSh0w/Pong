@@ -50,11 +50,11 @@ private:
 	FrameTime ft;
 	const float upper_bound_timestep = 0.0025f;
 
-	const float paddle_speed = 400.f;
+	const float paddle_speed = 1500.f;
 	const float paddle_height = 150.f;
 	const float paddlewidth = 25.f;
-	const float min_ballspeed = 500.f;
-	const float max_ballspeed =  900.f;
+	const float min_ballspeed = 1500.f;
+	const float max_ballspeed =  1500.f;
 	const float ball_dimension = 20.f;
 	bool game_started = false;
 	bool game_ended = false;
