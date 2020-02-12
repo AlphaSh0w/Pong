@@ -10,6 +10,7 @@ public:
 	float SimulateBall(Ball ball,Rect<float>& play_area); //returns the y position of the center of the ball the moment it should reache the range of the paddle.
 	void Update_Seek(Ball ball, Rect<float>& play_area);
 	Vect<float> GetMove();
+	void SetSeek(float seek_y);
 private:
 	Paddle& controlled_paddle;
 	float current_y_seek;

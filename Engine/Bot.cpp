@@ -41,7 +41,14 @@ float Bot::SimulateBall(Ball ball,Rect<float>& play_area)
 
 void Bot::Update_Seek(Ball ball, Rect<float>& play_area)
 {
-	current_y_seek = SimulateBall(ball, play_area);
+	if (controlled_paddle.GetSide() == Side::right && ball.GetSpeed().x > 0.f)
+	{
+		current_y_seek = SimulateBall(ball, play_area);
+	}
+	if (controlled_paddle.GetSide() == Side::left && ball.GetSpeed().x < 0.f)
+	{
+		current_y_seek = SimulateBall(ball, play_area);
+	}
 }
 
 Vect<float> Bot::GetMove()
@@ -61,4 +68,9 @@ Vect<float> Bot::GetMove()
 			return Vect<float>(0.f, 0.f);
 		}
 	}
+}
+
+void Bot::SetSeek(float seek_y)
+{
+	current_y_seek = seek_y;
 }

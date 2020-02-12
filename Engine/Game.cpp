@@ -33,13 +33,14 @@ Game::Game(MainWindow& wnd)
 		paddle_height,paddlewidth, Vect<float>(0.f, paddle_speed),Side::right, Colors::Blue)
 	//paddles are initialised in a way that puts them at the middle of the playable area height, further from the borders by two times their width.
 	,
-	rightbot(rightpaddle,300.f,0.025f,5.f),
+	rightbot(rightpaddle,Graphics::ScreenHeight/2,0.025f,5.f),
 	playerleft('Z','S'),
 	playerright(VK_UP,VK_DOWN),
 	ball((screenrect.bottomright.x / 2) - (ball_dimension/2), (screenrect.bottomright.y / 2) - (ball_dimension / 2),
 		ball_dimension,starting_ballspeed_X,starting_ballspeed_Y,Colors::White)
 {
 	ball.GenerateRandomSpeed();
+	rightbot.Update_Seek(ball, screenrect);
 }
 
 void Game::Go()
@@ -110,6 +111,8 @@ void Game::UpdateModel(float dt)
 						(screenrect.bottomright.y / 2) - paddle_height / 2));
 					//reset speeds.
 					ball.GenerateRandomSpeed();
+					rightbot.SetSeek(gfx.ScreenHeight/2);
+					rightbot.Update_Seek(ball, screenrect);
 				}
 			}
 		}
