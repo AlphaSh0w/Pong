@@ -75,12 +75,14 @@ void Game::UpdateModel(float dt)
 			if (ball.IsColliding(leftpaddle.GetHitBox()))
 			{
 				ball.SetMovementToRight();
+				ball.AdjustYSpeedOnHit(leftpaddle);
 			}
 			else
 			{
 				if (ball.IsColliding(rightpaddle.GetHitBox()))
 				{
 					ball.SetMovementToLeft();
+					ball.AdjustYSpeedOnHit(rightpaddle);
 				}
 			}
 		}

@@ -158,40 +158,34 @@ void Ball::GenerateRandomSpeed()
 
 }
 
+
 void Ball::AdjustYSpeedOnHit(const Paddle & paddle)
 {
 	Rect<float> paddle_hitbox = paddle.GetHitBox();
 	const float paddle_center_y = paddle_hitbox.topleft.y + (paddle.GetHeight() / 2);
 	const float ball_center_y = topleft.y + (dimension / 2);
-	if(ball_center_y < paddle_center_y)
+	float coeficient = std::min(1.f,std::abs(paddle_center_y - ball_center_y) / (paddle.GetHeight() / 2));
+
+	if (ball_center_y < paddle_center_y)
 	{
-		float coeficient = (std::min( 1.5f,(paddle_center_y - ball_center_y) / (paddle.GetHeight()/4)));
-		coeficient = (std::max( 1.f,coeficient));
 		if (speed.y > 0.f)
 		{
-			if(speed.y < max_speed)
-			speed.y = speed.y * (-coeficient);
+			speed.y = -max_speed * coeficient;
 		}
 		else
 		{
-			if (speed.y > -max_speed)
-				speed.y = speed.y * (coeficient);
+			speed.y = -max_speed * coeficient;
 		}
 	}
 	else
 	{
-		const float coeficient = ((ball_center_y - paddle_center_y) / (paddle.GetHeight() / 4));
 		if (speed.y < 0.f)
 		{
-			if (speed.y > -max_speed)
-				speed.y = speed.y * (-coeficient);
-			else
-				speed.y = -speed.y;
+			speed.y = max_speed * coeficient;
 		}
 		else
 		{
-			if (speed.y < max_speed)
-				speed.y = speed.y * (coeficient);
+			speed.y = max_speed * coeficient;
 		}
 	}
 }

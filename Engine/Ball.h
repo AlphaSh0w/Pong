@@ -27,13 +27,13 @@ public:
 	bool SnapToLimitBorderTOPBOTTOM(const Rect<float>& border); //This automatically reverses the ball's speed on the concerned axis.
 	bool SnapToLimitBorderLEFTRIGHT(const Rect<float>& border); //This automatically reverses the ball's speed on the concerned axis.
 	void GenerateRandomSpeed();
-	void AdjustYSpeedOnHit(const Paddle& paddle);//trash function for now...
+	void AdjustYSpeedOnHit(const Paddle & paddle);
 
 private:
 	Vect<float> topleft;
 	Vect<float> speed;
 	Color c;
 	float dimension;
-	static constexpr int min_speed = 300;
-	static constexpr int max_speed = 350;
+	static constexpr int min_speed = 400;
+	static constexpr int max_speed = 500;
 };
