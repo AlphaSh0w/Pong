@@ -80,3 +80,8 @@ float Paddle::GetHeight() const
 {
 	return height;
 }
+
+Vect<float> Paddle::GetCenter() const
+{
+	return Vect<float>(topleft.x + width/2,topleft.y + height/2);
+}

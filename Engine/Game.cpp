@@ -31,7 +31,7 @@ Game::Game(MainWindow& wnd)
 		paddle_height, paddlewidth, Vect<float>(0.f, paddle_speed), Colors::Blue),
 	rightpaddle(Vect<float>(screenrect.bottomright.x - (paddlewidth * 3),(screenrect.bottomright.y / 2) - paddle_height/2),
 		paddle_height,paddlewidth, Vect<float>(0.f, paddle_speed), Colors::Blue)
-	//paddles are initialised in a way that puts them at the middle of the playable rectangle height, further from the borders by two times their width.
+	//paddles are initialised in a way that puts them at the middle of the playable area height, further from the borders by two times their width.
 	,
 	playerleft('Z','S'),
 	playerright(VK_UP,VK_DOWN),

@@ -18,6 +18,7 @@ public:
 	void SetPosition(Vect<float>& in_topleft);
 	float GetWidth() const;
 	float GetHeight() const;
+	Vect<float> GetCenter() const;
 private:
 	Vect<float> topleft;
 	Vect<float> speed;

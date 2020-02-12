@@ -76,11 +76,6 @@ void Ball::SetPosition(float in_x, float in_y)
 	topleft.y = in_y;
 }
 
-void Ball::SetSpeed(float in_x, float in_y)
-{
-	speed.x = in_x;
-	speed.y = in_y;
-}
 
 bool Ball::IsColliding(const Rect<float>& paddlehitbox) const
 {
@@ -162,8 +157,8 @@ void Ball::GenerateRandomSpeed()
 void Ball::AdjustYSpeedOnHit(const Paddle & paddle)
 {
 	Rect<float> paddle_hitbox = paddle.GetHitBox();
-	const float paddle_center_y = paddle_hitbox.topleft.y + (paddle.GetHeight() / 2);
-	const float ball_center_y = topleft.y + (dimension / 2);
+	const float paddle_center_y = paddle.GetCenter().y;
+	const float ball_center_y = GetCenter().y;
 	float coeficient = std::min(1.f,std::abs(paddle_center_y - ball_center_y) / (paddle.GetHeight() / 2));
 
 	if (ball_center_y < paddle_center_y)
@@ -188,4 +183,19 @@ void Ball::AdjustYSpeedOnHit(const Paddle & paddle)
 			speed.y = max_speed * coeficient;
 		}
 	}
+}
+
+float Ball::GetDimension() const
+{
+	return dimension;
+}
+
+Vect<float> Ball::GetCenter() const
+{
+	return Vect<float>(topleft.x + dimension/2, topleft.y + dimension/2);
+}
+
+Vect<float> Ball::GetSpeed() const
+{
+	return speed;
 }
