@@ -34,13 +34,15 @@ Game::Game(MainWindow& wnd)
 	//paddles are initialised in a way that puts them at the middle of the playable area height, further from the borders by two times their width.
 	,
 	rightbot(rightpaddle,Graphics::ScreenHeight/2,0.025f,5.f),
+	leftbot(leftpaddle, Graphics::ScreenHeight / 2, 0.025f, 5.f),
 	playerleft('Z','S'),
 	playerright(VK_UP,VK_DOWN),
 	ball((screenrect.bottomright.x / 2) - (ball_dimension/2), (screenrect.bottomright.y / 2) - (ball_dimension / 2),
-		ball_dimension,starting_ballspeed_X,starting_ballspeed_Y,Colors::White)
+		ball_dimension,min_ballspeed,max_ballspeed,Colors::White)
 {
 	ball.GenerateRandomSpeed();
 	rightbot.Update_Seek(ball, screenrect);
+	leftbot.Update_Seek(ball, screenrect);
 }
 
 void Game::Go()
@@ -63,7 +65,7 @@ void Game::UpdateModel(float dt)
 	{
 		if (!game_ended)
 		{
-			leftpaddle.Move(playerleft.GetNextMoveDirection(wnd.kbd), dt);
+			leftpaddle.Move(leftbot.GetMove(), dt);
 			leftpaddle.SnapToLimitBorder(screenrect);
 			rightpaddle.Move(rightbot.GetMove(), dt);
 			rightpaddle.SnapToLimitBorder(screenrect);
@@ -86,6 +88,7 @@ void Game::UpdateModel(float dt)
 				{
 					ball.SetMovementToLeft();
 					ball.AdjustYSpeedOnHit(rightpaddle);
+					leftbot.Update_Seek(ball, screenrect);
 				}
 			}
 		}
@@ -113,6 +116,8 @@ void Game::UpdateModel(float dt)
 					ball.GenerateRandomSpeed();
 					rightbot.SetSeek(gfx.ScreenHeight/2);
 					rightbot.Update_Seek(ball, screenrect);
+					leftbot.SetSeek(gfx.ScreenHeight/2);
+					leftbot.Update_Seek(ball, screenrect);
 				}
 			}
 		}

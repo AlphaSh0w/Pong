@@ -53,8 +53,8 @@ private:
 	const float paddle_speed = 400.f;
 	const float paddle_height = 150.f;
 	const float paddlewidth = 25.f;
-	const float starting_ballspeed_X = 450.f;
-	const float starting_ballspeed_Y =  300.f;
+	const float min_ballspeed = 500.f;
+	const float max_ballspeed =  900.f;
 	const float ball_dimension = 20.f;
 	bool game_started = false;
 	bool game_ended = false;
@@ -65,6 +65,7 @@ private:
 	Paddle leftpaddle;
 	Paddle rightpaddle;
 	Bot rightbot;
+	Bot leftbot;
 	PlayerControl playerleft;
 	PlayerControl playerright;
 	Ball ball;

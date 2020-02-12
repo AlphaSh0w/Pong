@@ -8,10 +8,8 @@ class Ball
 {
 public:
 	//constructors
-	Ball(const Vect<float>& topleft, float dimension, const Vect<float>& speed, Color c);
-	Ball(const Vect<float>& topleft, float dimension, float speed_x,float speed_y, Color c);
-	Ball(float x1, float y1, float dimension,const Vect<float>& speed, Color c);
-	Ball(float x1, float y1, float dimension, float speed_x, float speed_y, Color c);
+	Ball(const Vect<float>& topleft, float dimension, float min_speed,float max_speed, Color c);
+	Ball(float x1, float y1, float dimension, float min_speed_x, float max_speed_y, Color c);
 	
 	//functions
 	Rect<float> GetHitBox() const;
@@ -36,6 +34,6 @@ private:
 	Vect<float> speed;
 	Color c;
 	float dimension;
-	static constexpr int min_speed = 400;
-	static constexpr int max_speed = 500;
+	float min_speed = 400.f;
+	float max_speed = 500.f;
 };

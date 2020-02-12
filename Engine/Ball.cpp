@@ -2,30 +2,21 @@
 #include <assert.h>
 #include <random>
 
-Ball::Ball(const Vect<float>& topleft, float dimension, const Vect<float>& speed, Color c)
+Ball::Ball(const Vect<float>& topleft, float dimension, float min_speed, float max_speed, Color c)
 	:
 	topleft(topleft),
 	dimension(dimension),
-	speed(speed),
+	min_speed(min_speed),
+	max_speed(max_speed),
 	c(c)
+
 {
 }
 
-Ball::Ball(const Vect<float>& topleft, float dimension, float speed_x, float speed_y, Color c)
-	:
-	Ball(topleft, dimension, Vect<float>(speed_x, speed_y),c)
-{
-}
 
-Ball::Ball(float x1, float y1, float dimension, const Vect<float>& speed, Color c)
+Ball::Ball(float x1, float y1, float dimension, float min_speed, float max_speed, Color c)
 	:
-	Ball(Vect<float>(x1,y1),dimension,speed,c)
-{
-}
-
-Ball::Ball(float x1, float y1, float dimension, float speed_x, float speed_y, Color c)
-	:
-	Ball(x1,y1,dimension,Vect<float>(speed_x,speed_y),c)
+	Ball(Vect<float>(x1,y1),dimension,min_speed,max_speed,c)
 {
 }
 
@@ -135,7 +126,7 @@ void Ball::GenerateRandomSpeed()
 
 	std::random_device rd;
 	std::mt19937 rng(rd());
-	std::uniform_int_distribution<int> speed_dist(min_speed, max_speed);
+	std::uniform_int_distribution<int> speed_dist((int)min_speed, (int)max_speed);
 	std::uniform_int_distribution<int> bool_dist(0, 1);
 
 	//generate the speeds
