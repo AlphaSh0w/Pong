@@ -1,8 +1,8 @@
 #include "Bot.h"
-
+#include <random>
 #include <assert.h>
 
-Bot::Bot(Paddle& controlled_paddle,float starting_y_seek,float simulation_precision,float seek_tolerance)
+Bot::Bot(Paddle& controlled_paddle,int starting_y_seek,float simulation_precision,float seek_tolerance)
 	:
 	controlled_paddle(controlled_paddle),
 	current_y_seek(starting_y_seek),
@@ -41,13 +41,24 @@ float Bot::SimulateBall(Ball ball,Rect<float>& play_area)
 
 void Bot::Update_Seek(Ball ball, Rect<float>& play_area)
 {
+	std::random_device rd;
+	std::mt19937 rng(rd());
+	std::uniform_int_distribution<int> halfwidthdist(0, int(controlled_paddle.GetHeight()/2));
+	std::uniform_int_distribution<int> bool_dist(0, 1);
+
+	int random_shift = halfwidthdist(rng);
+	if (bool_dist(rng))
+	{
+		random_shift = -random_shift;
+	}
+
 	if (controlled_paddle.GetSide() == Side::right && ball.GetSpeed().x > 0.f)
 	{
-		current_y_seek = SimulateBall(ball, play_area);
+		current_y_seek = (int)SimulateBall(ball, play_area) + random_shift;
 	}
 	if (controlled_paddle.GetSide() == Side::left && ball.GetSpeed().x < 0.f)
 	{
-		current_y_seek = SimulateBall(ball, play_area);
+		current_y_seek = (int)SimulateBall(ball, play_area) + random_shift;
 	}
 }
 
@@ -70,7 +81,7 @@ Vect<float> Bot::GetMove()
 	}
 }
 
-void Bot::SetSeek(float seek_y)
+void Bot::SetSeek(int seek_y)
 {
 	current_y_seek = seek_y;
 }
