@@ -28,9 +28,9 @@ Game::Game(MainWindow& wnd)
 	gfx(wnd),
 	screenrect(0.f, 0.f, Graphics::ScreenWidth - 1, Graphics::ScreenHeight - 1),
 	leftpaddle(Vect<float>(screenrect.topleft.x + (paddlewidth * 2) , (screenrect.bottomright.y /2) - (paddle_height / 2)),
-		paddle_height, paddlewidth, Vect<float>(0.f, paddle_speed), Colors::Blue),
+		paddle_height, paddlewidth, Vect<float>(0.f, paddle_speed),Side::left, Colors::Blue),
 	rightpaddle(Vect<float>(screenrect.bottomright.x - (paddlewidth * 3),(screenrect.bottomright.y / 2) - paddle_height/2),
-		paddle_height,paddlewidth, Vect<float>(0.f, paddle_speed), Colors::Blue)
+		paddle_height,paddlewidth, Vect<float>(0.f, paddle_speed),Side::right, Colors::Blue)
 	//paddles are initialised in a way that puts them at the middle of the playable area height, further from the borders by two times their width.
 	,
 	playerleft('Z','S'),

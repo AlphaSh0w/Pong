@@ -1,19 +1,20 @@
 #include "Paddle.h"
 #include <assert.h>
 
-Paddle::Paddle(const Vect<float>& topleft, float height, float width, Vect<float>& speed, Color c)
+Paddle::Paddle(const Vect<float>& topleft, float height, float width, Vect<float>& speed,Side side, Color c)
 	:
 	topleft(topleft),
 	height(height),
 	width(width),
 	speed(speed),
+	side(side),
 	c(c)
 {
 }
 
-Paddle::Paddle(float x1, float y1, float height, float width, float speed_x, float speed_y, Color c)
+Paddle::Paddle(float x1, float y1, float height, float width, float speed_x, float speed_y,Side side, Color c)
 	:
-	Paddle(Vect<float>(x1,y1),height,width,Vect<float>(speed_x,speed_y),c)
+	Paddle(Vect<float>(x1,y1),height,width,Vect<float>(speed_x,speed_y),side,c)
 {
 }
 
@@ -84,4 +85,9 @@ float Paddle::GetHeight() const
 Vect<float> Paddle::GetCenter() const
 {
 	return Vect<float>(topleft.x + width/2,topleft.y + height/2);
+}
+
+Side Paddle::GetSide() const
+{
+	return side;
 }
