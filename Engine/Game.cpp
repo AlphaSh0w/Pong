@@ -33,6 +33,7 @@ Game::Game(MainWindow& wnd)
 		paddle_height,paddlewidth, Vect<float>(0.f, paddle_speed),Side::right, Colors::Blue)
 	//paddles are initialised in a way that puts them at the middle of the playable area height, further from the borders by two times their width.
 	,
+	rightbot(rightpaddle,300.f,0.025f,5.f),
 	playerleft('Z','S'),
 	playerright(VK_UP,VK_DOWN),
 	ball((screenrect.bottomright.x / 2) - (ball_dimension/2), (screenrect.bottomright.y / 2) - (ball_dimension / 2),
@@ -63,7 +64,7 @@ void Game::UpdateModel(float dt)
 		{
 			leftpaddle.Move(playerleft.GetNextMoveDirection(wnd.kbd), dt);
 			leftpaddle.SnapToLimitBorder(screenrect);
-			rightpaddle.Move(playerright.GetNextMoveDirection(wnd.kbd), dt);
+			rightpaddle.Move(rightbot.GetMove(), dt);
 			rightpaddle.SnapToLimitBorder(screenrect);
 			ball.Move(dt);
 			ball.SnapToLimitBorderTOPBOTTOM(screenrect);
@@ -76,6 +77,7 @@ void Game::UpdateModel(float dt)
 			{
 				ball.SetMovementToRight();
 				ball.AdjustYSpeedOnHit(leftpaddle);
+				rightbot.Update_Seek(ball, screenrect);
 			}
 			else
 			{

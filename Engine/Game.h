@@ -29,6 +29,7 @@
 #include "Ball.h"
 #include "FrameTime.h"
 #include "PlayerControl.h"
+#include "Bot.h"
 
 class Game
 {
@@ -63,6 +64,7 @@ private:
 
 	Paddle leftpaddle;
 	Paddle rightpaddle;
+	Bot rightbot;
 	PlayerControl playerleft;
 	PlayerControl playerright;
 	Ball ball;
