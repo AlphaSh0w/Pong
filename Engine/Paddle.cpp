@@ -1,5 +1,5 @@
 #include "Paddle.h"
-#include <assert.h>
+#include <cassert>
 
 Paddle::Paddle(const Vect<float>& topleft, float height, float width, Vect<float>& speed,Side side, Color c)
 	:

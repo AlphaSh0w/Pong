@@ -33,8 +33,8 @@ Game::Game(MainWindow& wnd)
 		paddle_height,paddlewidth, Vect<float>(0.f, paddle_speed),Side::right, Colors::Blue)
 	//paddles are initialised in a way that puts them at the middle of the playable area height, further from the borders by two times their width.
 	,
-	rightbot(rightpaddle,Graphics::ScreenHeight/2,0.025f,5.f),
-	leftbot(leftpaddle, Graphics::ScreenHeight / 2, 0.025f, 5.f),
+	rightbot(rightpaddle,Graphics::ScreenHeight/2,upper_bound_timestep,5.f),
+	leftbot(leftpaddle, Graphics::ScreenHeight / 2, upper_bound_timestep, 5.f),
 	playerleft('Z','S'),
 	playerright(VK_UP,VK_DOWN),
 	ball((screenrect.bottomright.x / 2) - (ball_dimension/2), (screenrect.bottomright.y / 2) - (ball_dimension / 2),

@@ -1,5 +1,5 @@
 #include "Ball.h"
-#include <assert.h>
+#include <cassert>
 #include <random>
 
 Ball::Ball(const Vect<float>& topleft, float dimension, float min_speed, float max_speed, Color c)
